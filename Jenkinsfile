@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        ROOT_PASSWORD = credentials('Admin1.')
+        ROOT_PASSWORD = credentials('admin1')
     }
 
     stages {
