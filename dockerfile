@@ -1,11 +1,15 @@
 FROM php:8.2-apache
 
-# Extensiones necesarias
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Permisos correctos para Apache
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html
+# Crear usuario sin privilegios con el nombre requerido
+RUN useradd -r -s /bin/false mgarfer1604
 
-# Seguridad básica (opcional)
-USER www-data
+# Copiar la aplicación
+COPY index.php /var/www/html/
+
+# Cambiar propietario
+RUN chown -R mgarfer1604:mgarfer1604 /var/www/html
+
+# Ejecutar como ese usuario (no root)
+USER mgarfer1604
