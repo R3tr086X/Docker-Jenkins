@@ -1,13 +1,11 @@
 FROM php:8.2-apache
 
-# Instalar extensión MySQL para PHP
+# Extensiones necesarias
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Crear usuario sin privilegios
-RUN useradd -ms /bin/bash mgarfer1604
+# Permisos correctos para Apache
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html
 
-# Cambiar permisos
-RUN chown -R mgarfer1604:mgarfer1604 /var/www/html
-
-# Usar usuario no root
-USER mgarfer1604
+# Seguridad básica (opcional)
+USER www-data
