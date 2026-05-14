@@ -3,7 +3,6 @@
 $host = "db";
 $user = "root";
 $password = getenv("ROOT_PASSWORD");
-$database = "test";
 
 echo "<h2>Conexión a MariaDB</h2>";
 
